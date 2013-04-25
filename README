@@ -1,0 +1,22 @@
+in /etc/layman/layman.cfg add near line 40 an own list of overlays:
+-------------------------------------------------------------------
+
+overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
+            file:///var/lib/layman/my-list.xml                          <== new line
+
+create or modify /var/lib/layman/my-list.xml:
+---------------------------------------------
+
+<?xml version="1.0" ?>
+ <repositories version="1.0">
+   <repo priority="50" quality="experimental" status="unofficial">      <!-- start desurium-overlay -->
+     <name>desurium-overlay</name>
+     <description>Overlay for the opensource desurium gaming client</description>
+     <homepage>https://github.com/desura/desurium-overlay</homepage>
+     <owner>
+       <email>git@karolherbst.de</email>
+     </owner>
+     <source type="git">https://github.com/desura/desurium-overlay.git</source>
+   </repo>                                                              <!-- end -->
+ </repositories>
+
