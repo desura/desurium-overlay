@@ -42,7 +42,7 @@ DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+32bit +bundled-wxgtk debug tools"
+IUSE="+32bit +bundled-wxgtk debug test tools"
 
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
@@ -115,6 +115,7 @@ src_configure() {
 		-DWITH_ARES=FALSE
 		-DFORCE_SYS_DEPS=TRUE
 		-DBUILD_CEF=FALSE
+		$(cmake-utils_use test BUILD_TESTS)
 		-BUILD_ONLY_CEF=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
