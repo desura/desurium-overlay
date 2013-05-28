@@ -14,11 +14,7 @@ GITHUB_PROJECT="Desurium"
 BREAKPAD_ARC="breakpad-850.tar.gz"
 CEF_ARC="cef-291.tar.gz"
 WX_ARC="wxWidgets-2.9.3.tar.bz2"
-
-if ! use bundled-wxgtk ; then
-	WX_GTK_VER="2.9"
-	WX_ECLASS="wxwidgets"
-fi
+WX_GTK_VER="2.9"
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
@@ -36,7 +32,7 @@ SRC_URI="${SRC_URI}
 		ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}
 	)"
 
-inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
+inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games toolchain-funcs
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
