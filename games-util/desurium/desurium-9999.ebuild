@@ -65,7 +65,6 @@ COMMON_DEPEND="app-arch/bzip2
 		net-misc/curl[ares]
 	)
 	>=sys-devel/gcc-4.6
-	virtual/pkgconfig
 	x11-libs/gtk+:2
 	x11-libs/libnotify
 	x11-libs/libXt
@@ -80,7 +79,8 @@ RDEPEND=">=media-libs/desurium-cef-4
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
 	${COMMON_DEPEND}"
-DEPEND="${COMMON_DEPEND}"
+DEPEND="${COMMON_DEPEND}
+	virtual/pkgconfig"
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]]; then
