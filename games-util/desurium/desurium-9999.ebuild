@@ -26,8 +26,8 @@ else
 	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${PV} -> ${DESURIUM_ARC}"
 fi
 SRC_URI="${SRC_URI}
-	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${BREAKPAD_ARC}
-	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}
+	mirror://sourceforge/desurium/${BREAKPAD_ARC}
+	mirror://sourceforge/desurium/${CEF_ARC}
 	bundled-wxgtk? (
 		ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}
 	)"

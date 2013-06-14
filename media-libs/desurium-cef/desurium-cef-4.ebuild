@@ -27,9 +27,9 @@ else
 	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${DESURIUM_VERSION} -> ${DESURIUM_ARC}"
 fi
 SRC_URI="${SRC_URI}
-	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}
+	mirror://sourceforge/desurium/${CEF_ARC}
 	http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}
-	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
+	mirror://sourceforge/desurium/${DEPOT_TOOLS_ARC}"
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} python-any-r1 games
 
