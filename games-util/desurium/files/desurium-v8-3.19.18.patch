@@ -1,0 +1,95 @@
+From c23c285ff185e5c97276cb323fdf1daa935eccad Mon Sep 17 00:00:00 2001
+From: Karol Herbst <git@karolherbst.de>
+Date: Wed, 3 Jul 2013 19:26:09 +0200
+Subject: [PATCH] static/scriptengine: use Handle instead of Persistence
+
+fixes #569
+
+v2: make it compatible with older versions of v8
+---
+ src/static/scriptengine/code/ScriptCoreInternal.cpp | 8 ++++++--
+ src/static/scriptengine/code/ScriptCoreInternal.h   | 2 +-
+ src/static/scriptengine/code/jsExtensions.cpp       | 6 +++---
+ 3 files changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/src/static/scriptengine/code/ScriptCoreInternal.cpp b/src/static/scriptengine/code/ScriptCoreInternal.cpp
+index 08d6d94..45565c3 100644
+--- a/src/static/scriptengine/code/ScriptCoreInternal.cpp
++++ b/src/static/scriptengine/code/ScriptCoreInternal.cpp
+@@ -16,6 +16,10 @@
+ along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+ 
++// we need this for compatibility
++#ifndef V8_USE_UNSAFE_HANDLES
++#define V8_USE_UNSAFE_HANDLES 1
++#endif
+ 
+ #include "Common.h"
+ #include "ScriptCoreInternal.h"
+@@ -70,7 +74,7 @@ void ScriptCoreInternal::init()
+ 	global->Set(v8::String::New("Warning"), v8::FunctionTemplate::New(JSWarning));
+ 	global->Set(v8::String::New("Debug"), v8::FunctionTemplate::New(JSDebug));
+ 
+-	v8::Persistent<v8::Context> context = v8::Context::New(RegisterJSBindings(), global);
++	v8::Handle<v8::Context> context = v8::Context::New(RegisterJSBindings(), global);
+ 	m_v8Context = context;		
+ }
+ 
+@@ -79,7 +83,7 @@ void ScriptCoreInternal::del()
+ 	if (s_Disabled)
+ 		return;
+ 
+-	m_v8Context.Dispose();
++	m_v8Context.Clear();
+ }
+ 
+ void ScriptCoreInternal::runString(const char* string)
+diff --git a/src/static/scriptengine/code/ScriptCoreInternal.h b/src/static/scriptengine/code/ScriptCoreInternal.h
+index a7bc5ce..5a44b70 100644
+--- a/src/static/scriptengine/code/ScriptCoreInternal.h
++++ b/src/static/scriptengine/code/ScriptCoreInternal.h
+@@ -45,7 +45,7 @@ class ScriptCoreInternal
+ 
+ 	static void OnFatalError(const char* location, const char* message);
+ 
+-	v8::Persistent<v8::Context> m_v8Context;
++	v8::Handle<v8::Context> m_v8Context;
+ };
+ 
+ 
+diff --git a/src/static/scriptengine/code/jsExtensions.cpp b/src/static/scriptengine/code/jsExtensions.cpp
+index a3179e4..2b5e243 100644
+--- a/src/static/scriptengine/code/jsExtensions.cpp
++++ b/src/static/scriptengine/code/jsExtensions.cpp
+@@ -26,8 +26,8 @@ class JSObject : public ChromiumDLL::JavaScriptObjectI
+ {
+ public:
+ 	JSObject(v8::Handle<v8::Value> obj, bool isException = false)
++	:	m_v8Object(obj)
+ 	{
+-		m_v8Object = v8::Persistent<v8::Value>::New(obj);
+ 		m_iRefCount = 1;
+ 		m_bIsException = isException;
+ 	}
+@@ -224,7 +224,7 @@ class JSObject : public ChromiumDLL::JavaScriptObjectI
+ 		return (T*)getUserObject();
+ 	}
+ 
+-	v8::Persistent<v8::Value> getNative()
++	v8::Handle<v8::Value> getNative()
+ 	{
+ 		return m_v8Object;
+ 	}
+@@ -232,7 +232,7 @@ class JSObject : public ChromiumDLL::JavaScriptObjectI
+ private:
+ 	bool m_bIsException;
+ 	uint32 m_iRefCount;
+-	v8::Persistent<v8::Value> m_v8Object;
++	v8::Handle<v8::Value> m_v8Object;
+ };
+ 
+ 
+-- 
+1.8.1.6
+
