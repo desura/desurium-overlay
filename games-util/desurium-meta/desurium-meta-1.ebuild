@@ -22,6 +22,7 @@ RDEPEND="
 		media-libs/libtheora
 		media-libs/libvorbis
 		media-libs/openal
+		media-libs/sdl-gfx
 		media-libs/sdl-image[gif,jpeg,png,tiff]
 		media-libs/sdl-ttf[X]
 		virtual/ffmpeg[X,mp3,sdl,theora,truetype]
