@@ -7,7 +7,7 @@ EAPI=5
 unset GIT_ECLASS
 unset WX_ECLASS
 
-GITHUB_MAINTAINER="lodle"
+GITHUB_MAINTAINER="desura"
 GITHUB_PROJECT="Desurium"
 
 # tools versions
@@ -50,11 +50,7 @@ COMMON_DEPEND="app-arch/bzip2
 	>=dev-libs/boost-1.47:=
 	dev-libs/glib:2
 	dev-libs/openssl:0
-
-	|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
-	    >=dev-libs/tinyxml-2.6.2-r2
-	)
-
+	dev-libs/tinyxml2
 	dev-lang/v8:=
 	|| (
 		net-misc/curl[adns]
