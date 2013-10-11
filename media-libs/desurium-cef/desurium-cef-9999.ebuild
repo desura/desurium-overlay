@@ -4,7 +4,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python2_6 python2_7 )
+PYTHON_COMPAT=( python{2_6,2_7} )
 
 unset GIT_ECLASS
 
@@ -18,8 +18,8 @@ CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
 DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
 
 if [[ ${PV} = 9999* ]]; then
-	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
-	GIT_ECLASS="git-2"
+	EGIT_REPO_URI="https://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
+	GIT_ECLASS="git-r3"
 	SRC_URI=""
 	EGIT_NOUNPACK="true"
 else
@@ -74,7 +74,7 @@ pkg_setup() {
 
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
-		git-2_src_unpack
+		git-r3_src_unpack
 	else
 		unpack ${DESURIUM_ARC}
 		S="${WORKDIR}/$(ls ${WORKDIR})"

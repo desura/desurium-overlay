@@ -17,10 +17,9 @@ WX_ARC="wxWidgets-2.9.3.tar.bz2"
 WX_GTK_VER="2.9"
 
 if [[ ${PV} = 9999* ]]; then
-	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
-	GIT_ECLASS="git-2"
+	EGIT_REPO_URI="https://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
+	GIT_ECLASS="git-r3"
 	SRC_URI=""
-	EGIT_NOUNPACK="true"
 else
 	DESURIUM_ARC="${P}.tar.gz"
 	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${PV} -> ${DESURIUM_ARC}"
@@ -87,7 +86,7 @@ pkg_pretend() {
 
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
-		git-2_src_unpack
+		git-r3_src_unpack
 	else
 		unpack ${DESURIUM_ARC}
 		S="${WORKDIR}/$(ls ${WORKDIR})"
