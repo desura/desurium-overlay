@@ -37,7 +37,7 @@ DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+32bit +bundled-wxgtk debug test tools"
+IUSE="+32bit +bundled-wxgtk debug gtest test tools"
 
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
@@ -45,6 +45,9 @@ fi
 
 # wxGTK-2.9.4.1 does not work!
 COMMON_DEPEND="app-arch/bzip2
+	gtest? (
+		dev-cpp/gtest
+	)
 	dev-db/sqlite
 	>=dev-libs/boost-1.47:=
 	dev-libs/glib:2
@@ -100,6 +103,7 @@ src_configure() {
 		-DFORCE_SYS_DEPS=TRUE
 		-DBUILD_CEF=FALSE
 		$(cmake-utils_use test BUILD_TESTS)
+		$(cmake-utils_use gtest WITH_GTEST)
 		-BUILD_ONLY_CEF=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
