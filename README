@@ -1,3 +1,25 @@
+Conteúdo
+
+Desura
+Construir o Desura no Linux
+Construir o Desura no Windows
+Construir o Desura no Mac
+Notas Especiais para Usuários Avançados
+Considerações Finais
+
+Jogos grátis no Desura
+O que são jogos online grátis no Desura? O Desura é um aplicativo cliente de jogos que permite aos usuários acessar e baixar jogos grátis com um único clique. Para mais informações, visite http://github.com/desura/desura-app/wiki/
+
+Este é o projeto OFICIAL do Desura, que é o projeto de código aberto do qual o Produto Aplicativo Cliente Desura comercialmente mantido é construído e distribuído. Se você acompanhou a história do projeto do Aplicativo Cliente Desura, também existe o "Desurium", que pode ser construído para uso privado e experimentação com novos recursos e/ou correções que você pode querer contribuir em algum momento.
+
+Enquanto o Aplicativo Desura passou por muitas iterações, atualmente o projeto está sendo gerenciado pelos operadores do Desura na Bad Juju Games, Inc. Este projeto não recebeu tanta atenção quanto necessita de forma frequente e, portanto, está passando por uma grande reformulação no desenvolvimento. Consequentemente, existem muitos problemas "abertos" que precisam ser abordados e serão notificados e atualizados aqui frequentemente.
+
+Para mais informações sobre a licença do projeto, por favor, consulte o arquivo LICENSE.md. No entanto, se você não for ler o arquivo; DesuraApp agora está oficialmente licenciado sob a licença GPL v3.
+
+Construir o Desura no Linux (OBSERVAÇÃO: Revisar as Instruções de Construção do Linux)
+
+Nota: As construções do Linux estão EM DESENVOLVIMENTO INTENSO, mas agora que o projeto é novamente GPL v3, estamos olhando várias partes do projeto Desurium para integração nesta versão oficialmente mantida. Com o tempo, espera-se que todas as melhores partes do Desurium sejam totalmente integradas nesta versão e oficialmente encerradas (para evitar qualquer confusão contínua entre os projetos).
+
 in /etc/layman/layman.cfg add near line 40 an own list of overlays:
 -------------------------------------------------------------------
 
